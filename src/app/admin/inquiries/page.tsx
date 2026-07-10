@@ -1,0 +1,8 @@
+import { Mail } from "lucide-react";
+import { AdminPageTitle, AdminShell } from "@/components/admin/admin-shell";
+import { requireAdmin } from "@/lib/auth";
+import { getAdminInquiries } from "@/lib/admin-data";
+import { formatDate } from "@/lib/utils";
+
+export const dynamic = "force-dynamic";
+export default async function AdminInquiriesPage() { const [session, inquiries] = await Promise.all([requireAdmin(), getAdminInquiries()]); return <main><AdminShell email={session.email}><AdminPageTitle title="Inquiries" description="Messages sent through the website contact form will appear here after MongoDB is connected." /><div className="mt-7 space-y-4">{inquiries.length ? inquiries.map((item) => <article key={item._id} className="rounded-2xl border border-ink/[.08] bg-white p-5"><div className="flex flex-col justify-between gap-3 sm:flex-row"><div><div className="flex items-center gap-2"><span className="grid size-8 place-items-center rounded-lg bg-[#FDDFD3]"><Mail className="size-4" /></span><h2 className="font-display text-lg font-semibold text-ink">{item.name}</h2></div><p className="mt-3 text-sm text-muted">{item.email}{item.phone ? ` · ${item.phone}` : ""}</p></div><div className="flex items-start gap-2"><span className="rounded-full bg-[#F2F4FA] px-3 py-1.5 text-xs font-bold text-ink">{item.service || "General"}</span><span className="pt-1.5 text-xs text-muted">{formatDate(item.createdAt)}</span></div></div><p className="mt-5 border-t border-ink/[.07] pt-4 text-sm leading-7 text-ink/75">{item.message}</p></article>) : <div className="rounded-2xl border border-dashed border-ink/15 p-8 text-center text-sm text-muted">No inquiries yet. After MongoDB is connected, visitor messages will appear here.</div>}</div></AdminShell></main>; }
