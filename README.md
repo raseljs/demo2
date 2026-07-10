@@ -43,6 +43,10 @@ A fast, responsive and SEO-ready agency website for **dreamspaceit.com**. It is 
 - bcrypt password hashing
 - Zod validation
 
+## 📸 Website Preview
+
+![DreamSpace IT Homepage](./screenshots/homepage.png)
+
 ## Run locally
 
 ### 1. Install packages
@@ -125,6 +129,5 @@ The public site uses starter project/blog cards until MongoDB is connected. Afte
 - The homepage uses the supplied DreamSpace IT web-development poster from `public/images/dreamspace-web-development-poster.png`.
 - Each service now has a full bilingual article-style detail page with ideal clients, deliverables, process, detailed sections and a WhatsApp CTA.
 - Every visible **বিস্তারিত দেখুন / Read full article** link opens its own full detail route:
-
   - Services: `/services/[slug]`
   - Blog articles: `/blog/[slug]`
